@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Collections.ObjectModel;
 
 namespace AdoLibrary
 {
     public class BrouwerManager
     {
-        public List<Brouwer> GetBrouwersBeginNaam(String beginNaam)
+        public ObservableCollection<Brouwer> GetBrouwersBeginNaam(String beginNaam)
         {
-            List<Brouwer> brouwers = new List<Brouwer>();
+            ObservableCollection<Brouwer> brouwers = new ObservableCollection<Brouwer>();
             var manager = new BierenDbManager();
             using (var conBieren = manager.GetConnection())
             {

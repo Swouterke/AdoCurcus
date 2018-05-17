@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,11 +16,15 @@ using AdoLibrary;
 
 namespace AdoCurcus
 {
+
+    
     /// <summary>
     /// Interaction logic for OverzichtBrouwers.xaml
     /// </summary>
     public partial class OverzichtBrouwers : Window
     {
+        public ObservableCollection<Brouwer> brouwersOb = new ObservableCollection<Brouwer>();
+
         private CollectionViewSource brouwerViewSource;
         public OverzichtBrouwers()
         {
@@ -88,14 +93,13 @@ namespace AdoCurcus
         {
             int totalRowsCount;
             brouwerViewSource = ((CollectionViewSource)(this.FindResource("brouwerViewSource")));
-            var manager = new BrouwerManager();
-            List<Brouwer> brouwers = new List<Brouwer>();
-            brouwers = manager.GetBrouwersBeginNaam(textBoxZoeken.Text);
-            totalRowsCount = brouwers.Count();
+            var manager = new BrouwerManager();          
+            brouwersOb = manager.GetBrouwersBeginNaam(textBoxZoeken.Text);
+            totalRowsCount = brouwersOb.Count();
             labelTotalRowCount.Content = totalRowsCount.ToString();
-            brouwerViewSource.Source = brouwers;
+            brouwerViewSource.Source = brouwersOb;
             goUpdate();
-            var nummers = (from b in brouwers orderby b.Postcode select b.Postcode.ToString()).Distinct().ToList();
+            var nummers = (from b in brouwersOb orderby b.Postcode select b.Postcode.ToString()).Distinct().ToList();
             nummers.Insert(0, "alles");
             comboBoxPostcode.ItemsSource = nummers;
             comboBoxPostcode.SelectedIndex = 0;
