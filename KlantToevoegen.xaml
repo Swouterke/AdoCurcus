@@ -1,0 +1,15 @@
+﻿<Window x:Class="AdoCurcus.KlantToevoegen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdoCurcus"
+        mc:Ignorable="d"
+        Title="KlantToevoegen" Height="300" Width="300">
+    <StackPanel>
+        <Label Content="Naam klant:"/>
+        <TextBox Name="textBoxNaam" Height="24" Width="200"/>
+        <Button Name="buttonToevoegen" Height="24" Width="200" Margin="5" Content="Toevoegen" Click="buttonToevoegen_Click"/>
+        <Label Name="labelKlantnummer" Margin="5"/>
+    </StackPanel>
+</Window>
